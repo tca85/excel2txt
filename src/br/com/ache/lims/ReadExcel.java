@@ -18,9 +18,10 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 /**
- * A dirty simple program that reads an Excel file.
+ * A dirty simple program that reads an Excel file
+ * from www.codejava.net
  * 
- * @author www.codejava.net
+ * @author tca85
  *
  */
 public class ReadExcel {
@@ -44,6 +45,26 @@ public class ReadExcel {
 		}
 	}
 
+	/**
+	 * 
+	 * @param listaProperties
+	 * @param nomeArquivo
+	 * @throws IOException
+	 * @throws FileNotFoundException
+	 */
+	private void buscarArquivoProperties(List<Properties> listaProperties, String nomeArquivo) throws IOException, FileNotFoundException {
+		Properties propertiesFile = new Properties();
+		InputStream ipt1 = getClass().getClassLoader().getResourceAsStream(nomeArquivo);
+
+		if (ipt1 != null) {
+			propertiesFile.load(ipt1);
+			listaProperties.add(propertiesFile);
+			ipt1.close();
+		} else {
+			throw new FileNotFoundException("arquivo de propriedades " + nomeArquivo + " não encontrado");
+		}
+	}	
+	
 	/**
 	 * Converte arquivo Excel para TXT
 	 */
@@ -128,27 +149,6 @@ public class ReadExcel {
 				System.out.println(e);
 				e.printStackTrace();
 			}
-		}
-	}
-
-	/**
-	 * 
-	 * @param listaProperties
-	 * @param nomeArquivo
-	 * @throws IOException
-	 * @throws FileNotFoundException
-	 */
-	private void buscarArquivoProperties(List<Properties> listaProperties, String nomeArquivo)
-			throws IOException, FileNotFoundException {
-		Properties propertiesFile = new Properties();
-		InputStream ipt1 = getClass().getClassLoader().getResourceAsStream(nomeArquivo);
-
-		if (ipt1 != null) {
-			propertiesFile.load(ipt1);
-			listaProperties.add(propertiesFile);
-			ipt1.close();
-		} else {
-			throw new FileNotFoundException("arquivo de propriedades " + nomeArquivo + " não encontrado");
 		}
 	}
 }
