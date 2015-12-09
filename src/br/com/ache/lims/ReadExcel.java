@@ -15,22 +15,26 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 
 /**
- * Converter arquivo excel em texto (.txt) para ser utilizado via comando na SM69 do SAP
+ * Converter arquivo excel (xls) em texto (.txt) para ser utilizado via 
+ * comando na transação SM69 do SAP
+ * O desenvolvimento foi necessário porque as funcionalidades de leitura
+ * de arquivos de excel do ABAP (SAP) não funcionam em modo background
  *  
- * obs: deve ser compilado na versão 1.4.2 do Java
+ * obs: deve ser compilado na versão 1.4.2 do Java porque o servidor do
+ * SAP não está com o java atualizado
  * 
  * 09.12.2015
  * 
- * @author Thiago Cordeiro Alves / Uderson Fermino
+ * @author Thiago Cordeiro Alves / Uderson Luiz Fermino
  *
  */
 public class ReadExcel {
 	public static void main(String[] args) {
-//		File dirOrigem = new File("/opt/conversor_lims/origem/");
-//		File dirDestino = new File("/opt/conversor_lims/destino/");
+		File dirOrigem = new File("/opt/conversor_lims/origem/");
+		File dirDestino = new File("/opt/conversor_lims/destino/");
 		
-		File dirOrigem = new File("c:/temp/excel/origem/");
-		File dirDestino = new File("c:/temp/excel/destino/");
+//		File dirOrigem = new File("c:/temp/excel/origem/");
+//		File dirDestino = new File("c:/temp/excel/destino/");
 		
 		String separator = System.getProperty("file.separator");
 
